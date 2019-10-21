@@ -2,20 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: server
-  name: server
+    app: static
+  name: static
 spec:
   selector:
     matchLabels:
-      app: server
+      app: static
   template:
     metadata:
       labels:
-        app: server
+        app: static
     spec:
       containers:
       - image: dsyer/server
-        name: server
+        name: static
         volumeMounts:
         - name: tmp
           mountPath: /tmp
@@ -46,8 +46,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: server
-  name: server
+    app: static
+  name: static
 spec:
   ports:
   - name: 3001-3001
@@ -55,5 +55,5 @@ spec:
     protocol: TCP
     targetPort: 3001
   selector:
-    app: server
+    app: static
   type: ClusterIP
